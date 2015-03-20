@@ -1,0 +1,19 @@
+{
+  "name": "node-chatroom",
+  "version": "0.0.1",
+  "description": "Simple chatroom using websockets ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pc3sq/node-chatroom"
+  },
+  "author": "Peter Ching <peter.ching@gmail.com> (https://github.com/pc3sq)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pc3sq/node-chatroom/issues"
+  },
+  "homepage": "https://github.com/pc3sq/node-chatroom"
+}
