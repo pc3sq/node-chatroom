@@ -10,8 +10,13 @@ var chatRoom = io.listen(app);
 //"socket", comes from the front-end
 chatRoom.sockets.on("connection", function(socket) {
 	//For the connecting chatter (socket), display a message welcoming message.
-	socket.emit('entrance', {message: 'Welcome to the chat room!'});
+	socket.emit("entrance", {message: 'Welcome to the chat room!'});
 
-	//When a new chatter enters, alert all chatters (sockets).
+	//Upon custom event "disconnect", alert all chatters (sockets) that a chatter has left.
+	socket.on("disconnect", function() {
+	  chatRoom.sockets.emit("exit", {message: 'A chatter has disconnected.'});
+	});
+
+	//Alert all chatters (sockets) wen a new chatter enters.
 	chatRoom.sockets.emit("entrance", {message: "C'mon everybody, everybody clap your hands ... for a new CHATTER has enterred the room."});
 });

@@ -4,10 +4,15 @@
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 		var socket = io.connect('http://localhost:3000');
-		//Custom socket event called 'entrance'
-		//Upon custom event "entrance", take response as a parameter and write it document.
+
+		//Upon custom event "entrance", take response as a parameter and write to document.
 		socket.on("entrance", function(res) {
-			document.write('<p>' + res.message + '</p>');
+			document.write("<p>" + res.message + "</p>");
+		});
+		
+		//Upon custom event "disconnect", take response as a parameter and write to document.
+		socket.on("exit", function(res) {
+			document.write("<p>" + res.message + "</p>");
 		});
 	</script>
 </head>
