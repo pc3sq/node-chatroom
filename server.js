@@ -5,4 +5,9 @@ var connect = require("connect");
 var app = connect().use(connect.static("public")).listen(3000);
 
 //Tell Socket.io to listen to app we created with Connect.
-var socket = io.listen(app);
+var chatRoom = io.listen(app);
+
+//"socket", comes from the front-end
+chatRoom.sockets.on("connection", function(socket) {
+	chatRoom.sockets.emit("entrance", {message: "C'mon everybody, everybody clap your hands ... for a new CHATTER has enterred the room."});
+});
