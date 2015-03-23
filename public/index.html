@@ -5,9 +5,9 @@
 	<script type="text/javascript">
 		var socket = io.connect('http://localhost:3000');
 		//Custom socket event called 'entrance'
-		//When server-side javascript emits the entrance event, it will be sending a response that we pass to the data arg.
-		socket.on("entrance", function  (data) {
-			document.write('<p>' + data.message + '</p>');
+		//Upon custom event "entrance", take response as a parameter and write it document.
+		socket.on("entrance", function(res) {
+			document.write('<p>' + res.message + '</p>');
 		});
 	</script>
 </head>
