@@ -24,5 +24,5 @@ chatRoom.sockets.on("connection", function(socket) {
 
 
 	//Alert all chatters (sockets) wen a new chatter enters.
-	chatRoom.sockets.emit("entrance", {message: "C'mon everybody, everybody clap your hands ... for a new CHATTER has enterred the room."});
+	chatRoom.sockets.emit("entrance", {message: "==NEW CHATTER HERE=="});
 });

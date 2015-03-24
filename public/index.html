@@ -2,26 +2,55 @@
 <head>
 	<!--This file is provided by Socket.io when in server.js when it listens to the app-->
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css" media="screen">
+
 	<script type="text/javascript">
-		var socket = io.connect('http://localhost:3000');
+		$(document).ready(function() {
+			console.log("$ here!");
+			var log_chat_message = function  (message) {
+				var li = $("<li />").text(message);
+				$('#chat_log').append(li);
+			};
 
-		//Upon custom event "entrance", take response as a parameter and write to document.
-		socket.on("entrance", function(res) {
-			document.write("<p>" + res.message + "</p>");
-		});
-		
-		//Upon custom event "disconnect", take response as a parameter and write to document.
-		socket.on("exit", function(res) {
-			document.write("<p>" + res.message + "</p>");
-		});
+			var socket = io.connect('http://localhost:3000');
 
-		//Upon custom event "chat", take response as a parameter and write to document.
-		socket.on("chat", function(res) {
-			document.write("<p>" + res.message + "</p>");
+			//Upon custom event "entrance", take response as a parameter and write to document.
+			socket.on("entrance", function(res) {
+				log_chat_message(res.message);
+			});
+			
+			//Upon custom event "disconnect", take response as a parameter and write to document.
+			socket.on("exit", function(res) {
+				log_chat_message(res.message);
+			});
+
+			//Upon custom event "chat", take response as a parameter and write to document.
+			socket.on("chat", function(res) {
+				log_chat_message(res.message);
+			});
+
+			$("#chat_box").keypress(function (event) {
+				if (event.which == 13) {
+					socket.emit("chat", {message: $("#chat_box").val()});
+					$("#chat_box").val("");
+				}
+			});
 		});
 	</script>
 </head>
+
 <body>
+	<div id="wrapper">
+		<div id="chatroom">
+			<ul id="chat_log">
+			</ul>
+		</div>
+
+		<div id="divider"></div>
+
+		<input type="text" name="chat_box" value="" id="chat_box" placeholder="type to chat..." />
+	</div>
 
 </body>
 </html>
