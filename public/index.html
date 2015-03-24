@@ -14,6 +14,11 @@
 		socket.on("exit", function(res) {
 			document.write("<p>" + res.message + "</p>");
 		});
+
+		//Upon custom event "chat", take response as a parameter and write to document.
+		socket.on("chat", function(res) {
+			document.write("<p>" + res.message + "</p>");
+		});
 	</script>
 </head>
 <body>

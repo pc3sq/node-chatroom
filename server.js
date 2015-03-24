@@ -17,6 +17,12 @@ chatRoom.sockets.on("connection", function(socket) {
 	  chatRoom.sockets.emit("exit", {message: 'A chatter has disconnected.'});
 	});
 
+	//"chitchat" is the message object being sent from the client.
+	socket.on("chat", function(chitchat) {
+	  chatRoom.sockets.emit("chat", {message: "(ಠ_ಠ)  " + chitchat.message});
+	});
+
+
 	//Alert all chatters (sockets) wen a new chatter enters.
 	chatRoom.sockets.emit("entrance", {message: "C'mon everybody, everybody clap your hands ... for a new CHATTER has enterred the room."});
 });
